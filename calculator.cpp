@@ -72,7 +72,7 @@ int main() {
             add(number1, number2);
         } else if (operation == "-") {
             subtract(number1, number2);
-        } else if (operation == "-") {
+        } else if (operation == "*") {
             multiply(number1, number2);
         } else if (operation == "/") {
             divide(number1, number2);
@@ -83,7 +83,7 @@ int main() {
         }
     } catch (std::invalid_argument) {
         // Error msg
-        std::cout << "Error: you entered string in either " << number1
-        << " or " << number2;
+        std::cout << "Error: you entered string in either " << n1Input
+        << " or " << n2Input;
     }
 }
