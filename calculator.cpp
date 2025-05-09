@@ -4,86 +4,86 @@
 // Date: May 7th, 2025
 // Calculator program in C++
 
+#include <cmath>
 #include <iostream>
 #include <string>
-#include <cmath>
 
 // Function to add
-void add(float n1, float n2) {
-    std::cout << n1 << " + " << n2 << " = " << n1 + n2;
+float add(float n1, float n2) {
+    return n1 + n2;
 }
 
 // Function to subtract
-void subtract(float n1, float n2) {
-    std::cout << n1 << " - " << n2 << " = " << n1 - n2;
+float subtract(float n1, float n2) {
+    return n1 - n2;
 }
 
 // Function to multiply
-void multiply(float n1, float n2) {
-    std::cout << n1 << " * " << n2 << " = " << n1 * n2;
+float multiply(float n1, float n2) {
+    return n1 * n2;
 }
 
-// Function to divide
-void divide(float n1, float n2) {
-    if (n2 == 0) {
-        std::cout << n1 << " / " << n2 << " = " << "Undefined";
-    } else {
-        std::cout << n1 << " / " << n2 << " = " << n1 / n2;
-    }
+// Function to divide (assumes n2 is not zero)
+float divide(float n1, float n2) {
+    return n1 / n2;
 }
 
-// Function for modulo
-void modulo(float n1, float n2) {
-    if (n2 == 0) {
-        std::cout << n1 << " % " << n2 << " = " << "Undefined";
-    } else {
-        std::cout << n1 << " % " << n2 << " = " << fmod(n1, n2);
-    }
+// Function for modulo (assumes n2 is not zero)
+float modulo(float n1, float n2) {
+    return fmod(n1, n2);
 }
 
-// Function to call operation functions
+// Main function
 int main() {
-    // Initialize variables
-    std::string operation;
-    std::string n1Input;
-    std::string n2Input;
+    std::string operation, n1Input, n2Input;
+    float number1, number2;
 
-    float number1;
-    float number2;
-
-    // Get input from user, assign to variables
-    std::cout << "Enter an operation for your program (+,-,*,/,%):";
+    std::cout << "Enter an operation for your program (+,-,*,/,%): ";
     std::cin >> operation;
 
-    std::cout << "Enter the first number:";
+    std::cout << "Enter the first number: ";
     std::cin >> n1Input;
 
-    std::cout << "Enter the second number:";
+    std::cout << "Enter the second number: ";
     std::cin >> n2Input;
 
-    // Try catch convert to float
     try {
-        // Convert into float
         number1 = std::stof(n1Input);
         number2 = std::stof(n2Input);
 
-        // Call respective operation function
+        float result;
+
         if (operation == "+") {
-            add(number1, number2);
+            result = add(number1, number2);
+            std::cout << number1 << " + " << number2 << " = " << result;
         } else if (operation == "-") {
-            subtract(number1, number2);
+            result = subtract(number1, number2);
+            std::cout << number1 << " - " << number2 << " = " << result;
         } else if (operation == "*") {
-            multiply(number1, number2);
+            result = multiply(number1, number2);
+            std::cout << number1 << " * " << number2 << " = " << result;
         } else if (operation == "/") {
-            divide(number1, number2);
+            if (number2 == 0) {
+                std::cout << number1 << " / " << number2 << " = Undefined";
+            } else {
+                result = divide(number1, number2);
+                std::cout << number1 << " / " << number2 << " = " << result;
+            }
         } else if (operation == "%") {
-            modulo(number1, number2);
+            if (number2 == 0) {
+                std::cout << number1 << " % " << number2 << " = Undefined";
+            } else {
+                result = modulo(number1, number2);
+                std::cout << number1 << " % " << number2 << " = " << result;
+            }
         } else {
-            std::cout << "Invalid operation, please try again";
+            std::cout << "Invalid operation, please try again.";
         }
-    } catch (std::invalid_argument) {
-        // Error msg
-        std::cout << "Error: you entered string in either " << n1Input
-        << " or " << n2Input;
+
+    } catch (std::invalid_argument&) {
+        std::cout << "Error: You entered a string in either " << n1Input
+                  << " or " << n2Input;
     }
+
+    return 0;
 }
